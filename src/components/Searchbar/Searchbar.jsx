@@ -1,5 +1,5 @@
-
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Searchbar } from './Searchbar.styled';
 
@@ -11,17 +11,13 @@ class SearchbarForm extends React.Component {
 
   onChange = e => {
     const { value } = e.target;
-    console.log();
     this.setState({ imageName: value });
   };
 
   onSubmit = e => {
     e.preventDefault();
-  
     this.setState({
-      imageName: '',
-      
-      
+      imageName: '', 
     });
     if (!this.state.imageName.length) return;
     this.props.onSelectImage(this.state.imageName);
@@ -52,3 +48,7 @@ class SearchbarForm extends React.Component {
 }
 
 export default SearchbarForm;
+
+SearchbarForm.propTypes = {
+  imageName: PropTypes.string,
+};

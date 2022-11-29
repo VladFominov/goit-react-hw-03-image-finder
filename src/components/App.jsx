@@ -7,6 +7,7 @@ import { getImages } from './Services/api';
 import { ImageGalleryList } from './ImageGallery/ImageGallery';
 import { ButtonLoadMore } from './Button/Button';
 
+
 export class App extends React.Component {
   state = {
     page: 1,
@@ -23,9 +24,12 @@ export class App extends React.Component {
     ) {
       try {
         this.setState({ isLoading: true });
-        const data = await getImages(this.state.imageName);
+        const data = await getImages(this.state.imageName, this.state.page);
         console.log('data', data);
-        this.setState({ images: data.hits });
+        this.setState({
+          images: [...this.state.images, ...data.hits],
+          page: this.state.page,
+        });
       } catch (error) {
         this.setState({
           error: error.message,
@@ -60,8 +64,8 @@ export class App extends React.Component {
         <ImageGalleryList images={this.state.images} />
 
         {this.state.imageName && <ButtonLoadMore onClick={this.loadMore} />}
-        
+       
       </div>
     );
   }
-};
+}
