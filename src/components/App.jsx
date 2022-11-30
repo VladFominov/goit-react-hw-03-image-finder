@@ -25,10 +25,11 @@ export class App extends React.Component {
       try {
         this.setState({ isLoading: true });
         const data = await getImages(this.state.imageName, this.state.page);
-        console.log('data', data);
+        
         this.setState({
           images: [...this.state.images, ...data.hits],
           page: this.state.page,
+          
         });
       } catch (error) {
         this.setState({
@@ -41,7 +42,7 @@ export class App extends React.Component {
   }
 
   onSelectImage = imageName => {
-    this.setState({ imageName: imageName });
+    this.setState({ imageName: imageName, images: [], page:1 });
   };
 
   loadMore = () => {

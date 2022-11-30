@@ -6,7 +6,6 @@ import { Searchbar } from './Searchbar.styled';
 class SearchbarForm extends React.Component {
   state = {
     imageName: '',
-    
   };
 
   onChange = e => {
@@ -17,7 +16,7 @@ class SearchbarForm extends React.Component {
   onSubmit = e => {
     e.preventDefault();
     this.setState({
-      imageName: '', 
+      imageName: '',
     });
     if (!this.state.imageName.length) return;
     this.props.onSelectImage(this.state.imageName);
